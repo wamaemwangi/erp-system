@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Portal</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <h2>My Portal</h2>
+        
+        <ul class="nav">
+            <li><a href="/">Dashboard</a></li>
+
+            <li class="menu">
+                <span>HR</span>
+                <ul class="submenu">
+                    <li><a href="{% url 'leave_apply' %}">Leave Application</a></li>
+                    <li><a href="{% url 'leave_approval' %}">Leave Approval</a></li>
+                    <li><a href="{% url 'payslips' %}">Payslips</a></li>
+                    <li><a href="{% url 'overtime' %}">Overtime</a></li>
+                    <li><a href="{% url 'overtime_approval' %}">Overtime Approval</a></li>
+                    <li><a href="{% url 'profile' %}">My Profile</a></li>
+                    <li><a href="{% url 'attendance' %}">Attendance</a></li>
+                </ul>
+            </li>
+
+            <li class="menu">
+                <span>Procurement</span>
+                <ul class="submenu">
+                    <li><a href="{% url 'store_requisition' %}">Store Requisition</a></li>
+                    <li><a href="{% url 'store_approval' %}">Store Approval</a></li>
+                    <li><a href="{% url 'purchase_requisition' %}">Purchase Requisition</a></li>
+                    <li><a href="{% url 'purchase_approval' %}">Purchase Approval</a></li>
+                </ul>
+            </li>
+
+              <li class="menu">
+    <span>Finance</span>
+    <ul class="submenu">
+        <li><a href="{% url 'petty_cash' %}">Petty Cash</a></li>
+        <li><a href="{% url 'petty_cash_approval' %}">Petty Cash Approval</a></li>
+        <li><a href="{% url 'imprest' %}">Imprest</a></li>
+        <li><a href="{% url 'imprest_approval' %}">Imprest Approval</a></li>
+        <li><a href="{% url 'imprest_surrender' %}">Imprest Surrender</a></li>
+        <li><a href="{% url 'imprest_surrender_approval' %}">Imprest Surrender Approval</a></li>
+        <li><a href="{% url 'salary_advance' %}">Salary Advance</a></li>
+        <li><a href="{% url 'salary_advance_approval' %}">Salary Advance Approval</a></li>
+    </ul>
+</li>
+
+            <li class="menu">
+    <span>Fleet Management</span>
+    <ul class="submenu">
+        <li><a href="{% url 'transport_requisition' %}">Transport Requisition</a></li>
+        <li><a href="{% url 'transport_approval' %}">Transport Approval</a></li>
+        <li><a href="{% url 'work_ticket' %}">Work Ticket</a></li>
+        <li><a href="{% url 'work_ticket_approval' %}">Work Ticket Approval</a></li>
+        <li><a href="{% url 'fuel_requisition' %}">Fuel Requisition</a></li>
+    </ul>
+</li>
+                
+        </ul>
+        
+        <!-- Logout button at bottom -->
+        <div style="padding: 15px; margin-top: 20px; border-top: 1px solid #555;">
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" style="width: 100%; padding: 10px; background: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                    Logout
+                </button>
+            </form>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="content">
+        {% block content %}{% endblock %}
+    </main>
+
+</div>
+
+<!-- BOOTSTRAP JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.querySelectorAll('.menu > span').forEach(menu => {
+    menu.addEventListener('click', function() {
+        this.parentElement.classList.toggle('active');
+    });
+});
+</script>
+
+</body>
+</html>

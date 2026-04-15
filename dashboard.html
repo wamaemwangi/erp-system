@@ -1,0 +1,59 @@
+{% extends 'frontend/base.html' %}
+
+{% block content %}
+<h1 class="page-title">Dashboard</h1>
+
+<div class="dashboard-grid">
+
+    <!-- HR Section - Combined -->
+    <div class="card">
+        <h3>HR Approvals</h3>
+        <p class="pending">Leave: {{ pending_leaves }}</p>
+        <p class="pending">Overtime: {{ pending_overtime }}</p>
+        <a href="{% url 'leave_approval_hod' %}" class="btn">Leave</a>
+        <a href="{% url 'overtime_approval_hod' %}" class="btn">Overtime</a>
+    </div>
+
+    <!-- Procurement Section -->
+    <div class="card">
+        <h3>Store Requisitions</h3>
+        <p class="pending">Pending: {{ pending_store }}</p>
+        <a href="{% url 'store_approval_hod' %}" class="btn">View</a>
+    </div>
+
+    <div class="card">
+        <h3>Purchase Requisitions</h3>
+        <p class="pending">Pending: {{ pending_purchase }}</p>
+        <a href="{% url 'purchase_approval_hod' %}" class="btn">View</a>
+    </div>
+
+    <!-- Finance Section - Grouped -->
+    <div class="card">
+        <h3>Cash Requests</h3>
+        <p class="pending">Petty Cash: {{ pending_petty_cash }}</p>
+        <p class="pending">Imprest: {{ pending_imprest }}</p>
+        <a href="{% url 'petty_cash_approval_hod' %}" class="btn">Petty Cash</a>
+        <a href="{% url 'imprest_approval_hod' %}" class="btn">Imprest</a>
+    </div>
+
+    <div class="card">
+        <h3>Salary & Surrender</h3>
+        <p class="pending">Salary Advance: {{ pending_salary_advance }}</p>
+        <p class="pending">Imprest Surrender: {{ pending_imprest_surrender }}</p>
+        <a href="{% url 'salary_advance_approval_hr' %}" class="btn">Salary Advance</a>
+        <a href="{% url 'imprest_surrender_approval' %}" class="btn">Surrender</a>
+    </div>
+
+    <!-- Fleet Section - Grouped -->
+    <div class="card">
+        <h3>Fleet Requests</h3>
+        <p class="pending">Transport: {{ pending_transport }}</p>
+        <p class="pending">Work Ticket: {{ pending_work_ticket }}</p>
+        <p class="pending">Fuel: {{ pending_fuel }}</p>
+        <a href="{% url 'transport_approval_fleet_manager' %}" class="btn">Transport</a>
+        <a href="{% url 'work_ticket_approval_fleet_manager' %}" class="btn">Work Ticket</a>
+        <a href="{% url 'fuel_requisition_approval_fleet_manager' %}" class="btn">Fuel</a>
+    </div>
+
+</div>
+{% endblock %}
